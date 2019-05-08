@@ -2,13 +2,15 @@ package com.gysoft;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
- * @Description 启动类
+ * @Description 服务提供者启动类启动类
  * @Author DJZ-WWS
  * @Date 2019/5/8 10:25
  */
 @SpringBootApplication
+@EnableEurekaClient
 public class DeptProvider8001_App
 {
     public static void main(String[] args)
