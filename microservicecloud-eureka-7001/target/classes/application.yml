@@ -10,5 +10,9 @@ eureka:
     fetch-registry: false #false表示自己端就是注册中心，我的职责就是维护服务实例，并不需要去检索服务
     service-url:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/        #设置与Eureka Server交互的地址查询服务和注册服务都需要依赖这个地址。
+  server:
+    enable-self-preservation: false        #关闭eureka的自我保护机制
 
-
+ # management:   #这个配置是因为我们访问端点接口的时候报了一个401，这个401应该是权限问题，查了相关资料这样配了一下，把他的敏感Sensitive设置成false 我尝试这样不行，换成properties方式
+   # security:
+      #enabled=false:
