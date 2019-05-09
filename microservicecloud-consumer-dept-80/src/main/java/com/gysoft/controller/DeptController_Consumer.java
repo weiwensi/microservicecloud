@@ -18,7 +18,9 @@ import java.util.List;
 @RestController
 public class DeptController_Consumer
 {
-    private static final String REST_URL_PREFIX = "http://localhost:8001";
+   // private static final String REST_URL_PREFIX = "http://localhost:8001";
+    //负载均衡请求地址
+    private static final String REST_URL_PREFIX = "http://MICROSERVICECLOUD-DEPT";
 
     /** restTemplate  请求参数说明
      * (url, requestMap, ResponseBean.class)这三个参数分别代表
