@@ -3,6 +3,7 @@ package com.gysoft;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.feign.EnableFeignClients;
 
 /**
  * @Description
@@ -11,10 +12,11 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  */
 @SpringBootApplication
 @EnableEurekaClient//负载均衡需要，标记其为Eureka的客户端
-public class DeptConsumer80_App
+@EnableFeignClients//启用Fegin功能
+public class DeptConsumer80_Fegin_App
 {
     public static void main(String[] args)
     {
-        SpringApplication.run(DeptConsumer80_App.class, args);
+        SpringApplication.run(DeptConsumer80_Fegin_App.class, args);
     }
 }
