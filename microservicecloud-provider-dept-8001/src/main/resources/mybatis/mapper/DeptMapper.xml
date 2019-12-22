@@ -14,6 +14,11 @@
    INSERT INTO dept(dname,db_source) VALUES(#{dname},DATABASE());
   </insert>
 
+    <select id="getDeptNameAndEmployeeNameList" resultType="DepNameEmpNameInfo">
+     SELECT d.`dname`,em.`last_name` FROM dept AS d LEFT JOIN dept_employee AS de  ON d.`deptno`=de.`deptId`
+      LEFT JOIN tbl_employee AS em ON em.`id`=de.`empId`
+    </select>
+
 </mapper>
 
 

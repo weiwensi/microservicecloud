@@ -1,0 +1,15 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gysoft.dao.DeptAndEmployeeDao">
+<!--    <resultMap id="deptempname" type="com.gysoft.bean.DepNameEmpNameInfo">
+        <result column="last_name" property="employeeName" />
+        <result column="dname" property="deptName" />
+    </resultMap>-->
+
+   <select id="getAllDeptAndEmployeeInfo" resultType="com.gysoft.bean.DepNameEmpNameInfo">
+       SELECT d.`dname`,em.`last_name` FROM dept AS d LEFT JOIN dept_employee AS de  ON d.`deptno`=de.`deptId`
+    LEFT JOIN tbl_employee AS em ON em.`id`=de.`empId`
+   </select>
+</mapper>
+
+

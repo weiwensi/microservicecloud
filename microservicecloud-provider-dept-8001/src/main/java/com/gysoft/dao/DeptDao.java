@@ -7,6 +7,7 @@ package com.gysoft.dao;
  */
 import java.util.List;
 
+import com.gysoft.bean.DepNameEmpNameInfo;
 import com.gysoft.bean.Dept;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -18,4 +19,5 @@ public interface DeptDao
     public Dept findById(Long id);
 
     public List<Dept> findAll();
+    public List<DepNameEmpNameInfo> getDeptNameAndEmployeeNameList();
 }

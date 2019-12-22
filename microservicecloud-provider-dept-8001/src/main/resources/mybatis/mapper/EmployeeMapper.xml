@@ -1,0 +1,37 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gysoft.dao.EmployeeDao">
+    <!-- 用于映射数据库的列和bean的列不一致的情况 -->
+    <resultMap id="myemployee" type="com.gysoft.bean.Employee">
+        <id column="id" property="id" />
+        <result column="last_name" property="lastName" />
+        <result column="email" property="email" />
+        <result column="gender" property="gender" />
+    </resultMap>
+   <!-- <select id="getEmployeeById" resultType="com.gysoft.bean.Employee" parameterType="Integer">
+   select * from tbl_employee where id=#{id};
+  </select>-->
+    <insert id="insertEmployee" parameterType="com.gysoft.bean.Employee"
+            databaseId="mysql">
+        insert into tbl_employee(last_name,email,gender) values(#{lastName},#{email},#{gender})
+    </insert>
+    <update id="updateEmployee" >
+        update tbl_employee set last_name = #{lastName},
+        email = #{email},
+        gender = #{gender}
+        where id = #{id}
+    </update>
+    <delete id="deleteEmployeeById" >
+        delete from tbl_employee where id = #{id}
+    </delete>
+<!-- 如果返回的是list 使用resultType类型指定为List中具体哪个元素，如下面使用Employee而不是使用List-->
+    <select id="getAllEmps" resultMap="myemployee" >
+        select * FROM  tbl_employee
+    </select>
+
+    <select id="getEmployeeByIdReturnMap" resultType="java.util.HashMap">
+        select id,gender from tbl_employee
+    </select>
+</mapper>
+
+
