@@ -20,7 +20,7 @@ public interface EmployeeService {
      * 返回员工的id,性别map
      * @return
      */
-    Map<Integer,String> getEmployeeMapById();
+    Map<Integer,Object> getEmployeeMapById();
 
     /**
      * 获取所有部门及所有员工

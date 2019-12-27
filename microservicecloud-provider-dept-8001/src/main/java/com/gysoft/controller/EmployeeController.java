@@ -26,7 +26,7 @@ public class EmployeeController {
     }
     //返回 id,性别map
     @GetMapping("/getEmployeeMapById")
-    public Map<Integer,String> getEmployeeMapById(){
+    public Map<Integer,Object> getEmployeeMapById(){
         return employeeService.getEmployeeMapById();
     }
 
@@ -35,5 +35,9 @@ public class EmployeeController {
     public  Map<String, List<String>> getDeptAndEmployee(){
        return employeeService.getDeptAndEmployee();
     }
+
+    /**
+     * 查询参数是个对象
+     */
 
 }

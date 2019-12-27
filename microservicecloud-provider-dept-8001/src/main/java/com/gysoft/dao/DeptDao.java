@@ -6,6 +6,7 @@ package com.gysoft.dao;
  * @Date 2019/5/8 10:20
  */
 import java.util.List;
+import java.util.Map;
 
 import com.gysoft.bean.DepNameEmpNameInfo;
 import com.gysoft.bean.Dept;
@@ -20,4 +21,5 @@ public interface DeptDao
 
     public List<Dept> findAll();
     public List<DepNameEmpNameInfo> getDeptNameAndEmployeeNameList();
+
 }

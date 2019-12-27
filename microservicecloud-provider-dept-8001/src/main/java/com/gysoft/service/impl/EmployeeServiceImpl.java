@@ -5,6 +5,8 @@ import com.gysoft.dao.DeptAndEmployeeDao;
 import com.gysoft.dao.DeptDao;
 import com.gysoft.dao.EmployeeDao;
 import com.gysoft.service.EmployeeService;
+import com.gysoft.vo.QueryParam;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -35,8 +37,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Map<Integer, String> getEmployeeMapById() {
-        return employeeDao.getEmployeeByIdReturnMap();
+    public Map<Integer, Object> getEmployeeMapById() {
+        Integer id =1;
+        return employeeDao.getEmployeeByIdReturnMap(id);
     }
 
     @Override
@@ -46,7 +49,30 @@ public class EmployeeServiceImpl implements EmployeeService {
         Map<String, List<String>> deptNameAndEmpName = deptNameAndEmployeeNameList.stream().
                 collect(Collectors.groupingBy(DepNameEmpNameInfo::getDname,
                 Collectors.mapping(DepNameEmpNameInfo::getLast_name, Collectors.toList())));
+        //--------------查询参数是一个对象-----------
+        QueryParam  param=new QueryParam();
+        param.setGender(2);
+        param.setLastName("肖肖");
+        List<Employee> employeeByVo = employeeDao.getEmployeeByVo(param);
+        System.out.println(employeeByVo);
+        //查询条件可能存在也可能不存在
+        QueryParam  param2=new QueryParam();
+        String lastName ="肖肖";
+        Integer  a=null;
+        List<Employee> voIf= employeeDao.getEmployeeIf( lastName,a);
+        System.out.println("动态sql标签if: "+"集合元素个数："+voIf+voIf.size()+"个");
+       //测试分页 查询
+        List<Employee> pageResult = employeeDao.pageQueryEmployee(0, 2);
+        System.out.println("分页查询查出的结果是："+pageResult);
         return deptNameAndEmpName;
+    }
+
+    public void  test1(){
+        //mybatis 返回key  对象的集合
+        Map<String, Employee> employeeIdMap = employeeDao.selectAllEmpsReturnMap();
+       //返回一个map
+      //查询参数是一个对象
+
     }
 
 }

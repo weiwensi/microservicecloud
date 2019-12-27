@@ -31,6 +31,31 @@
 
     <select id="getEmployeeByIdReturnMap" resultType="java.util.HashMap">
         select id,gender from tbl_employee
+        <where>
+            id=#{id}
+        </where>
+    </select>
+    <select id="selectAllEmpsReturnMap" resultType="com.gysoft.bean.Employee">
+        select * FROM  tbl_employee
+    </select>
+
+    <select id="getEmployeeByVo" resultType="com.gysoft.bean.Employee">
+        select * FROM  tbl_employee WHERE  last_name =#{qp.lastName} AND  gender=#{qp.gender}
+
+    </select>
+    <select id="getEmployeeIf" resultType="com.gysoft.bean.Employee">
+        select * FROM  tbl_employee
+        <where>
+            <if test="lastName != null">
+                AND last_name = #{lastName}
+            </if>
+            <if test="gender != null">
+                AND gender = #{gender}
+            </if>
+        </where>
+    </select>
+    <select id="pageQueryEmployee" resultType="Employee">
+        select * FROM  tbl_employee  limit #{currentPage},#{pageSize}
     </select>
 </mapper>
 

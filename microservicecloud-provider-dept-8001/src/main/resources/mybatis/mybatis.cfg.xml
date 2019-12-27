@@ -7,6 +7,8 @@
 
     <settings>
         <setting name="cacheEnabled" value="true"/><!-- 二级缓存开启 -->
+        <!-- 开启mybatis驼峰命名-->
+        <setting name="mapUnderscoreToCamelCase" value="true" />
     </settings>
 
 </configuration>

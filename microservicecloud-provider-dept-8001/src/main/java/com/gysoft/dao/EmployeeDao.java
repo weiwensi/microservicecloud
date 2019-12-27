@@ -1,7 +1,10 @@
 package com.gysoft.dao;
 
 import com.gysoft.bean.Employee;
+import com.gysoft.vo.QueryParam;
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -49,7 +52,15 @@ public interface EmployeeDao {
      * 查询id,性别
      * @return
      */
-    Map<Integer,String> getEmployeeByIdReturnMap(  );
+    Map<Integer,Object> getEmployeeByIdReturnMap(Integer id );
+    //获取map结果  key(id),V(List)
+     @MapKey("id")
+     Map<String,Employee>  selectAllEmpsReturnMap();
+
+    List<Employee> getEmployeeByVo(@Param("qp") QueryParam param);
 
 
+    List<Employee> getEmployeeIf(@Param("lastName") String  lastName,@Param("gender")Integer  gender);
+
+    List<Employee>  pageQueryEmployee(@Param("currentPage") Integer  currentPage,@Param("pageSize") Integer pageSize);
 }
